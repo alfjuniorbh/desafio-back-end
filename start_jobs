@@ -1,0 +1,2 @@
+# run jobs
+bundle exec sidekiq -q proccess_cnab

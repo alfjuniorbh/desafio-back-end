@@ -23,6 +23,10 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'rspec-rails', '~> 4.0'
+gem 'devise'
+gem 'redis'
+gem 'sidekiq'
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
