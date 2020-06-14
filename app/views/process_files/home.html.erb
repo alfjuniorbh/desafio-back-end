@@ -1,1 +1,21 @@
-Home process
+
+  <h1 class="title">Listagem das Operações</h1>
+  <%= link_to "Importar arquivo", "/process-files/new" %>
+
+  <table>
+    <thead> 
+      <tr>
+        <th>Nome loja</th>
+        <th>Valor total</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @process.each do |p| %>
+        <tr>
+          <td><%=p.shop%></td>
+          <td class="text-right"><%=number_to_currency(p.total_price, :unit => "R$ ", :separator => ",", :delimiter => ".")%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

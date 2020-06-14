@@ -1,6 +1,7 @@
 class ProcessFilesController < ApplicationController
   def home
-    @process = ProcessFile.all
+    #@process = ProcessFile.group(:shop).all
+    @process = ProcessFile.select("shop, sum(value) as total_price").group("shop")
   end
 
   def create

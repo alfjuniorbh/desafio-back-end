@@ -1,4 +1,12 @@
-<%= form_with url: process_files_store_path, local: true do |form| %>
-  <%= form.file_field :file %><br>
-  <%= form.submit %>
-<% end %>
+  <h1 class="title">Importar arquivo</h1>
+  <%= link_to "Listagem das Operações", "/process-files" %>
+
+  <div class="form">
+    <%= form_with url: process_files_store_path, local: true do |form| %>
+      <div>
+        <label for="file">Arquivo[.txt]</label>
+        <%= form.file_field :file %>
+      </div>
+      <div><%= form.submit "Enviar"%></div>
+    <% end %>
+  </div>

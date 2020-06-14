@@ -1,10 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-
-  # get 'process-files', to: 'process_files#home'
-  # get 'process-files/new', to: 'process_files#create'
-  # post 'process-files', to: 'process_files#store'
+  root :to => redirect("/process-files")
 
   get '/process-files', to: 'process_files#home', as: :process_files_home
   get '/process-files/new', to: 'process_files#create', as: :process_files_create
