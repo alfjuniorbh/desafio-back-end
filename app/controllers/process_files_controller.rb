@@ -1,6 +1,6 @@
 class ProcessFilesController < ApplicationController
   def home
-    ProcessFileService.new(File.join Rails.root, "CNAB.txt").process_file
+    @process = ProcessFile.all
   end
 
   def create
