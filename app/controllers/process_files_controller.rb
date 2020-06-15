@@ -10,8 +10,14 @@ class ProcessFilesController < ApplicationController
 
   def store
     @process = ProcessFile.new
-    @process.upload(params[:file])
-    redirect_to process_files_home_path
+    upload_file = @process.upload(params[:file])
+
+    if !upload_file
+      flash[:alert] = "Favor selecionar um arquivo válido"
+      redirect_to process_files_create_path
+    else
+      redirect_to process_files_home_path
+    end
   end
 
 end

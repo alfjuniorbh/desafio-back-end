@@ -7,17 +7,22 @@ class ProcessFile < ApplicationRecord
 
 
   def upload(file)
-    if file.is_a?(String)
-      super(file)
+    if file.present? && File.extname(file) == '.txt'
+      if file.is_a?(String)
+        super(file)
+      else
+        file_name = "#{Time.now.to_i}-#{file.original_filename}"
+        path_of_file = "#{Rails.root}/public/files/"
+        path_with_file = "#{path_of_file}#{file_name}"
+
+        Dir.mkdir(path_of_file) unless Dir.exists?(path_of_file)
+        File.open(path_with_file, "wb") { |f| f.write(file.read) }
+
+        ProcessFileService.new(File.join Rails.root, "/public/files/#{file_name}").process_file
+      end
+      true
     else
-      file_name = "#{Time.now.to_i}-#{file.original_filename}"
-      path_of_file = "#{Rails.root}/public/files/"
-      path_with_file = "#{path_of_file}#{file_name}"
-
-      Dir.mkdir(path_of_file) unless Dir.exists?(path_of_file)
-      File.open(path_with_file, "wb") { |f| f.write(file.read) }
-
-      ProcessFileService.new(File.join Rails.root, "/public/files/#{file_name}").process_file
+      false
     end
   end
   
